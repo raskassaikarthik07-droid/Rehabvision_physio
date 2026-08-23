@@ -1,0 +1,65 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: rehabvision
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rehabvision_dev_2024}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: "8080"
+      ENVIRONMENT: development
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD:-rehabvision_dev_2024}@postgres:5432/rehabvision?sslmode=disable
+      JWT_SECRET: ${JWT_SECRET}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_REDIRECT_URL: ${GOOGLE_REDIRECT_URL:-http://localhost:8080/api/v1/auth/google/callback}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-1.5-flash}
+      AI_SERVICE_URL: http://ai-service:8090
+      AI_SERVICE_KEY: ${AI_SERVICE_KEY:-rehabvision-internal-2024}
+      ALLOWED_ORIGINS: http://localhost:5173,http://localhost:3000
+    ports:
+      - "8080:8080"
+
+  ai-service:
+    build:
+      context: ./ai_service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      AI_SERVICE_PORT: "8090"
+      AI_SERVICE_KEY: ${AI_SERVICE_KEY:-rehabvision-internal-2024}
+    ports:
+      - "8090:8090"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+
+volumes:
+  postgres_data:

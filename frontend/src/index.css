@@ -1,0 +1,238 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* ── Luminous Labs Signature Infrared & Photobiomodulation Palette ── */
+    --color-primary: #ff3366;
+    --color-primary-glow: #ff2a5f;
+    --color-secondary: #ff758c;
+    --color-accent-warm: #ffaa00;
+    --color-infrared: #ff0055;
+    --color-nir: #990033;
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    
+    /* ── Obsidian Matte Charcoal Backdrop ── */
+    --color-bg: #09090b;
+    --color-surface: #111116;
+    --color-surface-elevated: #181820;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-border-luminous: rgba(255, 51, 102, 0.35);
+    --color-text: #ffffff;
+    --color-muted: #d4d4d8;
+  }
+
+  html {
+    font-size: 17px; /* Scaled up for crystal-clear hackathon presentation visibility */
+  }
+
+  body {
+    background-color: #09090b;
+    color: #ffffff;
+    font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    letter-spacing: -0.015em;
+    overflow-x: hidden;
+    selection-background-color: #ff3366;
+    selection-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+  }
+
+  .font-mono {
+    font-family: 'Space Grotesk', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+/* ── Luminous Labs Core Design Utility Classes ───────────────────────────────── */
+
+.luminous-mesh-bg {
+  background-color: #09090b;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(255, 51, 102, 0.16) 0px, transparent 50%),
+    radial-gradient(at 85% 20%, rgba(255, 117, 140, 0.12) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(255, 170, 0, 0.09) 0px, transparent 50%),
+    radial-gradient(at 80% 85%, rgba(255, 0, 85, 0.09) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+.luminous-glass-card {
+  background: rgba(17, 17, 22, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-radius: 1.85rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luminous-glass-card:hover {
+  border-color: rgba(255, 51, 102, 0.45);
+  box-shadow: 0 30px 70px rgba(255, 51, 102, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.luminous-glass-card-interactive {
+  background: rgba(17, 17, 22, 0.88);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.85rem;
+  transition: all 0.25s ease;
+}
+
+.luminous-glass-card-interactive:hover {
+  border-color: rgba(255, 51, 102, 0.5);
+  box-shadow: 0 20px 50px rgba(255, 51, 102, 0.22);
+}
+
+.luminous-button-primary {
+  background: linear-gradient(135deg, #ff3366 0%, #ff6b4a 100%);
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border-radius: 1.25rem;
+  padding: 0.95rem 2.1rem;
+  box-shadow: 0 10px 30px rgba(255, 51, 102, 0.45);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.01em;
+}
+
+.luminous-button-primary:hover {
+  background: linear-gradient(135deg, #ff4d79 0%, #ff3366 100%);
+  box-shadow: 0 14px 40px rgba(255, 51, 102, 0.65);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.luminous-button-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.luminous-button-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.25rem;
+  padding: 0.95rem 2rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.luminous-button-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 51, 102, 0.5);
+  color: #ff3366;
+}
+
+.luminous-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Space Grotesk', monospace;
+}
+
+.luminous-gradient-text {
+  background: linear-gradient(135deg, #ffffff 25%, #ff758c 65%, #ff3366 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luminous-gradient-text-warm {
+  background: linear-gradient(135deg, #ffffff 25%, #ffaa00 70%, #ff3366 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luminous-gradient-text-emerald {
+  background: linear-gradient(135deg, #ffffff 30%, #34d399 70%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Custom Scrollbar ────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(9, 9, 11, 0.95);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 51, 102, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 51, 102, 0.7);
+}
+
+/* ── Animations ─────────────────────────────────────────────────────────────── */
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-radiant {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.1); }
+}
+
+.animate-pulse-radiant {
+  animation: pulse-radiant 6s ease-in-out infinite;
+}
+
+@keyframes slide-in-top {
+  0% { transform: translateY(-16px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slideIn {
+  animation: slide-in-top 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fade-in-up 0.3s ease-out forwards;
+}

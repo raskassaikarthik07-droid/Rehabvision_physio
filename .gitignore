@@ -1,0 +1,60 @@
+# RehabVision — Sensitive patterns — NEVER commit these
+.env
+.env.*
+*.env.local
+*.env.production
+*.env.secret
+.vercel/
+node_modules/
+dist/
+
+# Go build artifacts
+rehabvision/backend/rehabvision
+rehabvision/backend/server
+rehabvision/backend/*.exe
+rehabvision/backend/bin/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+env/
+*.pkl
+*.pickle
+
+# Dataset extracted (large)
+rehabvision/dataset/extracted/
+rehabvision/dataset/processed/
+
+# Frontend build
+rehabvision/frontend/dist/
+rehabvision/frontend/node_modules/
+rehabvision/frontend/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test artifacts
+.pytest_cache/
+coverage/
+htmlcov/
+*.coveragerc
+
+# Docker
+docker-compose.override.yml
